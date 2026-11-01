@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>❤️ValentinaVPN❤️ — Уютный и сверхбыстрый VPN</title>
+  <meta name="description" content="Защищённый, надёжный и красивый VPN без ограничений скорости. Работает через приложение Happ на iPhone, Android, Mac и Windows.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #fff5f7 0%, #ffe9ef 40%, #ffd9e2 100%);
+      --primary: #ff4d6d;
+      --primary-hover: #ff2a51;
+      --primary-glow: rgba(255, 77, 109, 0.35);
+      --card-bg: rgba(255, 255, 255, 0.75);
+      --card-border: rgba(255, 182, 193, 0.45);
+      --text-main: #3d0c1d;
+      --text-muted: #7a3e51;
+      --accent: #c9184a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+      position: relative;
+    }
+
+    /* Floating glowing orbs background */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .orb-1 {
+      width: 380px;
+      height: 380px;
+      background: rgba(255, 117, 143, 0.28);
+      top: -60px;
+      left: -60px;
+    }
+    .orb-2 {
+      width: 420px;
+      height: 420px;
+      background: rgba(255, 182, 193, 0.32);
+      top: 40%;
+      right: -80px;
+    }
+    .orb-3 {
+      width: 320px;
+      height: 320px;
+      background: rgba(255, 77, 109, 0.22);
+      bottom: -40px;
+      left: 15%;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    header {
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+    .logo-heart {
+      font-size: 26px;
+      animation: heartbeat 1.8s ease-in-out infinite;
+    }
+    .header-btn {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      padding: 8px 18px;
+      border-radius: 99px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .header-btn:hover {
+      background: white;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px var(--primary-glow);
+    }
+
+    /* Hero section */
+    .hero {
+      text-align: center;
+      padding: 60px 0 50px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--card-border);
+      padding: 7px 18px;
+      border-radius: 99px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 24px;
+      box-shadow: 0 4px 16px rgba(255, 77, 109, 0.08);
+    }
+    .hero h1 {
+      font-size: 52px;
+      line-height: 1.12;
+      font-weight: 900;
+      letter-spacing: -1.2px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #a4133c 0%, #ff4d6d 60%, #c9184a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto 34px;
+      font-weight: 450;
+    }
+
+    .cta-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #ff4d6d 0%, #c9184a 100%);
+      color: white;
+      padding: 15px 32px;
+      border-radius: 99px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 8px 25px var(--primary-glow);
+      transition: all 0.25s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(255, 77, 109, 0.45);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      color: var(--accent);
+      padding: 15px 28px;
+      border-radius: 99px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+    .btn-secondary:hover {
+      background: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 77, 109, 0.12);
+    }
+
+    /* Highlights row */
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 50px 0;
+    }
+    .hl-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 22px 18px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(255, 77, 109, 0.06);
+      transition: transform 0.25s ease;
+    }
+    .hl-card:hover {
+      transform: translateY(-4px);
+    }
+    .hl-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    .hl-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .hl-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Steps Section */
+    .steps-section {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 30px;
+      padding: 44px 36px;
+      margin-bottom: 50px;
+      box-shadow: 0 12px 40px rgba(255, 77, 109, 0.08);
+    }
+    .section-title {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .section-subtitle {
+      text-align: center;
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .step-card {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 182, 193, 0.4);
+      border-radius: 22px;
+      padding: 28px 22px;
+      text-align: center;
+      position: relative;
+    }
+    .step-num {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #ff4d6d 0%, #c9184a 100%);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 800;
+      font-size: 16px;
+      margin: 0 auto 16px;
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+    .step-name {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+    .step-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* Plan & Pricing Card */
+    .pricing-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 240, 245, 0.9) 100%);
+      backdrop-filter: blur(16px);
+      border: 2px solid rgba(255, 143, 171, 0.5);
+      border-radius: 30px;
+      max-width: 480px;
+      margin: 0 auto 60px;
+      padding: 40px 32px;
+      text-align: center;
+      box-shadow: 0 16px 45px rgba(255, 77, 109, 0.12);
+      position: relative;
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #ff4d6d 0%, #c9184a 100%);
+      color: white;
+      padding: 4px 16px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px var(--primary-glow);
+    }
+    .price-num {
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+      margin: 16px 0 6px;
+    }
+    .price-period {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+    .features-list {
+      list-style: none;
+      text-align: left;
+      margin: 0 auto 28px;
+      max-width: 320px;
+    }
+    .features-list li {
+      padding: 7px 0;
+      font-size: 14px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 550;
+    }
+
+    /* FAQ */
+    .faq-section {
+      max-width: 680px;
+      margin: 0 auto 60px;
+    }
+    .faq-item {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 18px 22px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-main);
+      user-select: none;
+    }
+    .faq-answer {
+      padding: 0 22px 18px;
+      font-size: 14px;
+      color: var(--text-muted);
+      display: none;
+      line-height: 1.5;
+    }
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+    .faq-item.open .faq-toggle {
+      transform: rotate(45deg);
+    }
+    .faq-toggle {
+      font-size: 20px;
+      color: var(--accent);
+      transition: transform 0.2s ease;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 34px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.18); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 38px; }
+      .highlights { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid { grid-template-columns: 1fr; }
+      .steps-section { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="container">
+    <header>
+      <a href="/" class="logo">
+        <span class="logo-heart">💖</span>
+        <span>ValentinaVPN</span>
+      </a>
+      <a href="https://t.me/valentinavpnbot" class="header-btn" target="_blank" rel="noopener">
+        🌸 Открыть бота
+      </a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="badge">
+          <span>🌸</span>
+          <span>Уютный VPN нового поколения</span>
+        </div>
+        <h1>Интернет без границ,<br>замедлений и блокировок</h1>
+        <p>Быстрое, надёжное и безопасное подключение через приложение Happ на всех ваших телефонах и компьютерах.</p>
+        <div class="cta-group">
+          <a href="https://t.me/valentinavpnbot" class="btn-primary" target="_blank" rel="noopener">
+            <span>✨ Подключить в Telegram</span>
+          </a>
+          <a href="https://happ.su" class="btn-secondary" target="_blank" rel="noopener">
+            <span>📱 Скачать Happ</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="highlights">
+        <div class="hl-card">
+          <div class="hl-icon">⚡</div>
+          <div class="hl-title">10 Гбит/с</div>
+          <div class="hl-desc">Без просадок и задержек, YouTube в 4K</div>
+        </div>
+        <div class="hl-card">
+          <div class="hl-icon">📱</div>
+          <div class="hl-title">До 3 устройств</div>
+          <div class="hl-desc">iOS, Android, Mac, Windows</div>
+        </div>
+        <div class="hl-card">
+          <div class="hl-icon">🛡</div>
+          <div class="hl-title">Приватность</div>
+          <div class="hl-desc">Полная защита трафика, без логов</div>
+        </div>
+        <div class="hl-card">
+          <div class="hl-icon">🎀</div>
+          <div class="hl-title">349 ₽ / мес</div>
+          <div class="hl-desc">Оплата картами РФ и СБП в 1 клик</div>
+        </div>
+      </section>
+
+      <section class="steps-section">
+        <h2 class="section-title">Как подключиться за 1 минуту</h2>
+        <p class="section-subtitle">Никаких сложных настроек — всё настраивается автоматически</p>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <div class="step-name">Установите Happ</div>
+            <div class="step-text">Скачайте бесплатное приложение <b>Happ</b> в App Store, Google Play или на официальном сайте happ.su</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <div class="step-name">Запустите бота</div>
+            <div class="step-text">Откройте <b>@valentinavpnbot</b> в Telegram и нажмите кнопку <b>«⚡ Подключить в Happ»</b></div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <div class="step-name">Наслаждайтесь</div>
+            <div class="step-text">Нажмите <b>«⚡ Открыть в Happ»</b> — профиль добавится мгновенно и включит защиту интернета</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="pricing-card">
+        <div class="pricing-badge">Единый тариф</div>
+        <div class="price-num">349 ₽</div>
+        <div class="price-period">за 1 месяц (30 дней)</div>
+        <ul class="features-list">
+          <li>💖 Безлимитный трафик на полной скорости</li>
+          <li>📱 До 3 устройств на одной подписке</li>
+          <li>🌸 Моментальное подключение через Happ</li>
+          <li>🛡 Полная анонимность и безопасность</li>
+          <li>🔄 Сброс конфигурации в 1 клик</li>
+        </ul>
+        <a href="https://t.me/valentinavpnbot" class="btn-primary" style="width: 100%; justify-content: center;" target="_blank" rel="noopener">
+          🌸 Оформить подписку в боте
+        </a>
+      </section>
+
+      <section class="faq-section">
+        <h2 class="section-title" style="margin-bottom: 24px;">Частые вопросы</h2>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>На каких устройствах работает ValentinaVPN?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            ValentinaVPN работает на iPhone, iPad, Android, компьютерах Mac и Windows через лёгкое и удобное приложение <b>Happ</b>. До 3 устройств могут быть подключены одновременно.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Будут ли работать YouTube, Instagram и другие сервисы?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            Да! Все заблокированные и замедленные сервисы работают стабильно на максимальной скорости без ограничений по качеству (включая видео в 4K).
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Как оплатить подписку?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            Оплата происходит прямо в Telegram-боте через платёжную систему: принимаются любые банковские карты РФ, СБП и MirPay. Подписка активируется мгновенно.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Что делать, если сменился телефон?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            В боте есть кнопка «🔄 Сбросить конфигурацию». Она мгновенно отвязывает старые устройства и выдаёт новый ключ для подключения нового телефона.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 <b>❤️ValentinaVPN❤️</b> • Домен: <a href="https://valentina.beer">valentina.beer</a> • Telegram: <a href="https://t.me/valentinavpnbot" target="_blank">@valentinavpnbot</a></p>
+    </footer>
+  </div>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(function(item) {
+      item.addEventListener('click', function() {
+        var parent = item.parentElement;
+        parent.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>
